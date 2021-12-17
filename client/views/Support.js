@@ -1,4 +1,4 @@
-function Home() {
+function Support() {
 
     const APP = $('#app');
     APP.html('');
@@ -6,4 +6,4 @@ function Home() {
     
 }
 
-export {Home}
+export {Support}

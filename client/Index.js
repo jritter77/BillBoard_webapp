@@ -1,7 +1,7 @@
 
 import {Home} from "./views/home.js";
 import {NavBar} from './components/Navbar.js';
-import { Footer } from "./components/Desktop_footer.js";
+import { Footer } from "./components/DesktopFooter.js";
 
 $('#header').html(NavBar());
 $('#footer').html(Footer());
