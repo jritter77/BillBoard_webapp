@@ -1,3 +1,4 @@
+import { Bill } from "../server_requests/Bill.js";
 import { startSession, verifySession } from "../server_requests/Session.js";
 import { User } from "../server_requests/User.js";
 
@@ -12,17 +13,11 @@ async function Home() {
     APP.append(output);
 
 
-    const result = await startSession('User1', 'root');
+    const result = await Bill.archiveBill(2, false);
 
-    output.append(result);
+    console.log(result);
 
-    const button = $('<button class="btn btn-primary">verify session</button>');
-
-    button.click(() => {
-        verifySession();
-    });
-
-    APP.append(button);
+    
 
     
 }
