@@ -1,7 +1,7 @@
 function Payments() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('PAYMENTS');
 
     
 }

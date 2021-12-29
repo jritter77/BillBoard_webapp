@@ -1,7 +1,7 @@
 function Analysis() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('ANALYSIS');
 
     
 }

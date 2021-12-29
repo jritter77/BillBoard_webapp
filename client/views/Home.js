@@ -1,25 +1,19 @@
-import { Bill } from "../server_requests/Bill.js";
-import { Payment } from "../server_requests/Payment.js";
-import { startSession, verifySession } from "../server_requests/Session.js";
-import { User } from "../server_requests/User.js";
+import { Login } from "../components/Login.js";
+import { startSession } from "../server_requests/Session.js";
 
 async function Home() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('HOME');
 
 
-    const output = $('<div><div>');
-
-    APP.append(output);
 
 
-    const result = await Payment.archivePayment(1, false);
+    const login = new Login();
 
-    console.log(result);
+    APP.append(login.form);
 
-    
-
+    console.log(startSession('user', 'root'));
     
 }
 

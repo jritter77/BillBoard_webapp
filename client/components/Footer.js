@@ -9,7 +9,7 @@ function Footer() {
             <a href='#contact'><b style='color:white;'>Contact</b></a>
         </div>
         <div class='col-md text-center'>
-            <a href='#terms-and-conditions'><b style='color:white;'>Terms & Conditions</b></a>
+            <a href='#terms'><b style='color:white;'>Terms & Conditions</b></a>
         </div>
         <div class='col-md text-center'>
             <a href='#support'><b style='color:white;'>Support</b></a>

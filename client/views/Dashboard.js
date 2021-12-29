@@ -1,7 +1,7 @@
 function Dashboard() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('DASHBOARD');
 
     
 }

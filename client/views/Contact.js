@@ -1,7 +1,7 @@
 function Contact() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('CONTACT');
 
     
 }

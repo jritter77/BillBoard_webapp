@@ -1,7 +1,7 @@
 function Terms() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('TERMS');
 
     
 }

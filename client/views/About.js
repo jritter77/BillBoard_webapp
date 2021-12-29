@@ -1,7 +1,7 @@
 function About() {
 
     const APP = $('#app');
-    APP.html('');
+    APP.html('ABOUT');
 
     
 }
