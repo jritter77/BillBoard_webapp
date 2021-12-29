@@ -9,7 +9,7 @@
     $user = $req->user;
     $session = $req->session;
 
-    if ($user == $_SESSION['user']) {
+    if ($user == $_SESSION['user'] && $session == session_id()) {
         session_regenerate_id();
         $token = array();
         $token['user'] = $user;

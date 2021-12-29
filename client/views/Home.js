@@ -1,4 +1,5 @@
-import { User } from "../server_requests/User";
+import { startSession, verifySession } from "../server_requests/Session.js";
+import { User } from "../server_requests/User.js";
 
 async function Home() {
 
@@ -11,9 +12,17 @@ async function Home() {
     APP.append(output);
 
 
-    const result = await User.changeEmail(5, null);
+    const result = await startSession('User1', 'root');
 
     output.append(result);
+
+    const button = $('<button class="btn btn-primary">verify session</button>');
+
+    button.click(() => {
+        verifySession();
+    });
+
+    APP.append(button);
 
     
 }

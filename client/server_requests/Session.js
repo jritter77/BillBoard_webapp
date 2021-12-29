@@ -2,8 +2,8 @@ import {post} from './WebRequest.js';
 
 
 // starts a session for the user if the given credentials are valid
-async function startSession(user, pass) {
-    let token = await post('./server/session/startSession.php', JSON.stringify({user: user, pass: pass}));
+async function startSession(user_name, pass) {
+    let token = await post('./server/session/startSession.php', JSON.stringify({user_name: user_name, pass: pass}));
 
     if (token){
         sessionStorage.setItem('token', token);
@@ -24,7 +24,7 @@ async function verifySession() {
         try {
             let tokenObj = JSON.parse(token);
             if (tokenObj.session) {
-                const verify = await post('./server/user/verifySession.php', token);
+                const verify = await post('./server/session/verifySession.php', token);
                 if (verify) {
                     sessionStorage.setItem('token', verify);
                     return true;

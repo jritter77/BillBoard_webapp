@@ -4,14 +4,14 @@
 $db = new SQLite3('../../data/BillBoard.db');
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("SELECT pass FROM users WHERE user = :user");
+$stmt = $db->prepare("SELECT pass_hash FROM User WHERE user_name = :user_name");
 
 // get req params
 $req = json_decode($_POST['req']);
 
 
 // fill in parameters
-$stmt->bindValue(':user', $req->user);
+$stmt->bindValue(':user_name', $req->user_name);
 
 
 // Execute the sqlite3 command
@@ -26,11 +26,11 @@ while ($res = $result->fetchArray(SQLITE3_ASSOC)) {
 
 
 // start session and return session id if credentials are verified
-if (password_verify($req->pass, $data[0]['pass'])) {
+if (password_verify($req->pass, $data[0]['pass_hash'])) {
     session_start();
     $token = array();
-    $_SESSION['user'] = $req->user;
-    $token['user'] = $req->user;
+    $_SESSION['user'] = $req->user_name;
+    $token['user'] = $req->user_name;
     $token['session'] = session_id();
     echo json_encode($token);
 }
