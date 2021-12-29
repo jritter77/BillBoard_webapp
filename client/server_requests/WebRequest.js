@@ -1,4 +1,4 @@
-function get(endpoint, params) {
+function get(endpoint, params="") {
     
         return jQuery.ajax({
 
@@ -14,7 +14,7 @@ function get(endpoint, params) {
 }
 
 
-function post(endpoint, params) {
+function post(endpoint, params="") {
 
     return jQuery.ajax({
 
@@ -30,7 +30,7 @@ function post(endpoint, params) {
 }
 
 
-function put(endpoint, params) {
+function put(endpoint, params="") {
 
     return jQuery.ajax({
 
