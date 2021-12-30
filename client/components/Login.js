@@ -5,8 +5,7 @@ class Login {
     
     constructor() {
 
-        this.row = $('<div class="row"></div>');
-        this.col = $('<div class="col"></div>');
+        this.html = $('<div style="margin: 10%;"></div>');
 
         this.form = $('<form class="needs-validation" novalidate ></form>');
 
@@ -25,8 +24,7 @@ class Login {
 
         this.submitButton.click(e => this.login(e));
 
-        this.row.append(
-            this.col.append(
+        this.html.append(
                 this.form.append(
                     this.userGroup.append(
                         this.userLabel,
@@ -39,18 +37,18 @@ class Login {
                     ),
                     this.submitButton
                 )
-            )
         );
 
         
     }
 
 
+    // Tries to start a new session and then navigate to Dashboard if credentials are authenticated
     async login(e) {
         e.preventDefault();
 
         if (await startSession(this.userField.val(), this.passField.val()) ) {
-            location.hash = '#dashboard';
+            Dashboard();
         }
         else {
             this.passField.val('');

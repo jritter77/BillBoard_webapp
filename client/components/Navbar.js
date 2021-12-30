@@ -15,7 +15,7 @@ return `
             <div class='row'>
                 <div class='col'><b><a style='color:white;' >Register</a></b></div>
                 <div class='col'><b style='color:white;'> | </b></div>
-                <div class='col'><b><a style='color:white;' >Login</a></b></div>
+                <div class='col'><b><a style='color:white;' href="#dashboard">Login</a></b></div>
             </div>
         </div>
     </nav>`;

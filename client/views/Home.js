@@ -8,12 +8,6 @@ async function Home() {
 
 
 
-
-    const login = new Login();
-
-    APP.append(login.form);
-
-    console.log(startSession('user', 'root'));
     
 }
 

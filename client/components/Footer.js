@@ -1,7 +1,6 @@
 function Footer() {
     return `
-    <div class='row no-gutters' style='height: 32px'></div>
-    <div class='row no-gutters' style='min-height: 32px'>
+    <div class='row no-gutters align-items-center' style='min-height: 64px'>
         <div class='col-md text-center'>
             <a href='#about'><b style='color:white;'>About</b></a>
         </div>
@@ -15,7 +14,7 @@ function Footer() {
             <a href='#support'><b style='color:white;'>Support</b></a>
         </div>
     </div>
-    <div class='row no-gutters' style='height: 32px'></div>`;
+    `;
 }
 
 export {Footer}

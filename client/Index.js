@@ -10,6 +10,7 @@ import { Analysis } from "./views/Analysis.js";
 import { Bills } from "./views/Bills.js";
 import { Dashboard } from "./views/Dashboard.js";
 import { Payments } from "./views/Payments.js";
+import { Register } from "./views/Register.js";
 
 $('#header').html(NavBar());
 $('#footer').html(Footer());
@@ -23,7 +24,8 @@ const pages = {
     analysis: Analysis,
     bills: Bills,
     dashboard: Dashboard,
-    payments: Payments
+    payments: Payments,
+    register: Register
 }
 
 function getPageFromURL() {

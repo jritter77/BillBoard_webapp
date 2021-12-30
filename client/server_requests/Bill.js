@@ -114,6 +114,12 @@ class Bill {
     }
 
 
+    // adjusts the bills due date to the next date according to frequency
+    static async cycleBill(bill_id) {
+
+    }
+
+
 }
 
 export {Bill}
