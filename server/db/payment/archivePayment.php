@@ -28,4 +28,8 @@ $result = $stmt->execute();
 // Return the bill_id of the new bill
 echo json_encode("SUCCESS");
 
+
+$db->close();
+unset($db);
+
 ?>

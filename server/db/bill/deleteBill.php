@@ -4,27 +4,23 @@
 $db = new SQLite3('../../../data/BillBoard.db');
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("UPDATE User 
-    SET 
-        user_email = :user_email
-    WHERE 
-        user_id = :user_id
-    ");
+$stmt = $db->prepare("DELETE FROM Bill WHERE bill_id = :bill_id");
 
-// get params from request
+// get parameters from request
 $req = json_decode($_POST['req']);
 
+
+
 // fill in parameters
-$stmt->bindValue(':user_id', $req->user_id);
-$stmt->bindValue(':user_email', $req->user_email);
+$stmt->bindValue(':bill_id', $req->bill_id);
+
 
 
 // Execute the sqlite3 command
 $result = $stmt->execute();
 
-// Return SUCCESS flag
+// Return the bill_id of the new bill
 echo json_encode("SUCCESS");
-
 
 $db->close();
 unset($db);

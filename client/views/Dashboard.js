@@ -1,11 +1,13 @@
-import { DashNav } from "../components/dashboard/dashNav";
-import { Login } from "../components/Login";
-import { verifySession } from "../server_requests/Session";
+import { DashNav } from "../components/dashboard/dashNav.js";
+import { Login } from "../components/general/Login.js";
+import { verifySession } from "../server_requests/Session.js";
 
 async function Dashboard() {
 
     const APP = $('#app');
     APP.html('');
+    $('#myModal').modal('hide');
+
 
     await verifySession();
     
@@ -17,9 +19,12 @@ async function Dashboard() {
 
         APP.append(dashNav.html);
 
+        
+        
+
     }
     else {
-        const login = new Login();
+        const login = new Login(Dashboard);
         APP.html(login.html);
     }
 

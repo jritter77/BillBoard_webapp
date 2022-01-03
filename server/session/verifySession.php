@@ -12,7 +12,8 @@
     if ($user == $_SESSION['user'] && $session == session_id()) {
         session_regenerate_id();
         $token = array();
-        $token['user'] = $user;
+        $token['id'] = $_SESSION['user_id'];
+        $token['user'] = $_SESSION['user'];
         $token['session'] = session_id();
         echo json_encode($token);
     }

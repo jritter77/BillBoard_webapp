@@ -26,4 +26,8 @@ $result = $stmt->execute();
 // Return SUCCESS flag
 echo json_encode("SUCCESS");
 
+
+$db->close();
+unset($db);
+
 ?>

@@ -67,6 +67,26 @@ class Bill {
     }
 
 
+    static async getActiveBills(user_id) {
+        const endpoint = './server/db/bill/getActiveBills.php';
+        const params = JSON.stringify({user_id: user_id});
+
+        const result = await get(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
+
+
+
     static async editBill(bill_id, bill_name, bill_amt, bill_type, bill_day_due, bill_month_due, bill_year_due, bill_freq) {
         const endpoint = './server/db/bill/editBill.php';
 
@@ -99,6 +119,24 @@ class Bill {
     static async archiveBill(bill_id, archived) {
         const endpoint = './server/db/bill/archiveBill.php';
         const params = JSON.stringify({bill_id: bill_id, archived: archived});
+
+        const result = await post(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
+
+    static async deleteBill(bill_id) {
+        const endpoint = './server/db/bill/deleteBill.php';
+        const params = JSON.stringify({bill_id: bill_id});
 
         const result = await post(endpoint, params);
 

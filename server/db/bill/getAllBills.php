@@ -16,11 +16,14 @@ $result = $stmt->execute();
 
 // extract data into array 
 $myArr = array(); 
-while ($row = $result->fetchArray()) {
+while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
   array_push($myArr, $row);
 }
 
 // Return user instance 
 echo json_encode($myArr);
+
+$db->close();
+unset($db);
 
 ?>

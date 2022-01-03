@@ -1,11 +1,14 @@
-import { startSession } from "../server_requests/Session";
-import { Dashboard } from "../views/Dashboard";
+import { startSession } from "../../server_requests/Session";
+import { Dashboard } from "../../views/Dashboard";
+import { FloatingContainer } from "./FloatingContainer";
 
 class Login {
     
-    constructor() {
+    constructor(path) {
 
-        this.html = $('<div style="margin: 10%;"></div>');
+        this.path = path;
+
+        this.html = new FloatingContainer;
 
         this.form = $('<form class="needs-validation" novalidate ></form>');
 
@@ -48,7 +51,7 @@ class Login {
         e.preventDefault();
 
         if (await startSession(this.userField.val(), this.passField.val()) ) {
-            Dashboard();
+            this.path();
         }
         else {
             this.passField.val('');

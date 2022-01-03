@@ -1,7 +1,7 @@
 
 import {Home} from "./views/home.js";
-import {NavBar} from './components/Navbar.js';
-import { Footer } from "./components/Footer.js";
+import {NavBar} from './components/general/Navbar.js';
+import { Footer } from "./components/general/Footer.js";
 import { About } from "./views/About.js";
 import { Contact } from "./views/Contact.js";
 import { Terms } from "./views/Terms.js";
@@ -14,6 +14,17 @@ import { Register } from "./views/Register.js";
 
 $('#header').html(NavBar());
 $('#footer').html(Footer());
+
+const setFooterPos = () => {
+    if (window.innerHeight > $('#app').height()) {
+        $('#footer').css({'position':'absolute'});
+    }
+    else {
+        $('#footer').css({'position':'static'});
+    }
+}
+
+window.onresize = setFooterPos;
 
 const pages = {
     home: Home,
@@ -35,10 +46,12 @@ function getPageFromURL() {
 }
 
 // Populate contentDiv wtih retrieved HTML
-function loadContent() {
+async function loadContent() {
+    $('#myModal').modal('hide');
     let fragmentId = getPageFromURL();
-    pages[fragmentId]();
-    $('.modal').modal('hide');
+    await pages[fragmentId]();
+    window.onresize = setFooterPos;
+    setFooterPos();
 }
 
 // Set to home page if no hash

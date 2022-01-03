@@ -35,4 +35,8 @@ $result = $stmt->execute();
 // Return the user_id of the new User
 echo json_encode($db->lastInsertRowId());
 
+
+$db->close();
+unset($db);
+
 ?>

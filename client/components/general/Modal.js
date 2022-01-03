@@ -31,6 +31,13 @@ class Modal {
         );
 
         $('#app').prepend(this.modal);
+
+        $(window).on('popstate', function() {
+            $('.modal').modal('hide');
+            $( ".modal-backdrop" ).remove();
+            $( ".in" ).remove();
+        });
+
         
     }
 
