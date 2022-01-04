@@ -1,6 +1,7 @@
 import { DesktopBill } from "../components/bills/DesktopBill.js";
 import { EditBillModal } from "../components/bills/EditBillModal.js";
 import { NewBillButton } from "../components/bills/NewBillButton.js";
+import { Col, Row } from "../components/general/BasicComponents.js";
 import { Dropdown } from "../components/general/Dropdown.js";
 import { Footer } from "../components/general/Footer.js";
 import { Login } from "../components/general/Login.js";
@@ -10,7 +11,7 @@ import { Bill } from "../server_requests/Bill.js";
 import { verifySession } from "../server_requests/Session.js";
 
 
-const billsContainer = $('<div class="row"></div>');
+const billsContainer = Row();
 
 
 async function populateBills(modal) {
@@ -50,7 +51,7 @@ async function Bills() {
         const newBillBtn = new NewBillButton(billModal);
 
         APP.append($('<div class="row text-right"></div>').append(
-            $('<div class="col"></div>').append(
+            Col().append(
                 newBillBtn.btn
             )
         ));

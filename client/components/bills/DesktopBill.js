@@ -1,4 +1,5 @@
 import { Bill } from "../../server_requests/Bill.js";
+import { Col, Row } from "../general/BasicComponents.js";
 import { FloatingContainer } from "../general/FloatingContainer.js"
 import { Footer } from "../general/Footer.js";
 import { LinkButton } from "../general/LinkButton.js";
@@ -48,14 +49,14 @@ class DesktopBill {
                     </div>
                 </div>`),
             $('<hr>'),    
-            $('<div class="row"></div>').append(
-                $('<div class="col"></div>').append(
+            Row().append(
+                Col().append(
                     $('<p><b>Type:</b></p>'),
                     $('<p><b>Due:</b></p>'),
                     $('<p><b>Amount:</b></p>'),
                     $('<p><b>Frequency:</b></p>')
                 ),
-                $('<div class="col"></div>').append(
+                Col().append(
                     this.type,
                     this.nextDue,
                     this.amtDue,
@@ -64,11 +65,11 @@ class DesktopBill {
             ),
             $('<hr>'),
             $(`<div class="row text-center no-gutters"></div>`).append(
-                $('<div class="col"></div>').append(
+                Col().append(
                     this.editBtn
                 ),
                 $('<div class="col">|</div>'),
-                $('<div class="col"></div>').append(
+                Col().append(
                     this.deleteBtn
                 )
             )

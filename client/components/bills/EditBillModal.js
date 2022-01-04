@@ -2,6 +2,7 @@ import { Select } from "../general/Select.js";
 import { Modal } from "../general/Modal.js";
 import { Bill } from "../../server_requests/Bill.js";
 import { populateBills } from "../../views/Bills.js";
+import { Col, Row } from "../general/BasicComponents.js";
 
 class EditBillModal extends Modal {
     constructor() {
@@ -47,8 +48,8 @@ class EditBillModal extends Modal {
 
         this.setBody(
             this.form.append(
-                $('<div class="row"></div').append(
-                    $('<div class="col"></div>').append(
+                Row().append(
+                    Col().append(
                         this.nameGroup.append(
                             this.nameLabel,
                             this.nameField,
@@ -56,23 +57,23 @@ class EditBillModal extends Modal {
                         )
                     )
                 ),
-                $('<div class="row"></div').append(
-                    $('<div class="col"></div>').append(
+                Row().append(
+                    Col().append(
                         this.typeSelect.html
                     ),
-                    $('<div class="col"></div>').append(
+                    Col().append(
                         this.freqSelect.html
                     )
                 ),
-                $('<div class="row"></div').append(
-                    $('<div class="col"></div>').append(
+                Row().append(
+                    Col().append(
                         this.amtGroup.append(
                             this.amtLabel,
                             this.amtField,
                             this.amtFeedback
                         )
                     ),
-                    $('<div class="col"></div>').append(
+                    Col().append(
                         this.dateGroup.append(
                             this.dateLabel,
                             this.dateSelect,
