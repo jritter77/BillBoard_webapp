@@ -23,8 +23,13 @@ class NavBar {
     );
 
 
+    static init() {
+        window.addEventListener('resize', () => NavBar.setLinks());
+    }
 
     static setLinks() {
+
+
 
         NavBar.links.html('');
 
@@ -32,8 +37,32 @@ class NavBar {
 
             const userDropdown = new Dropdown();
 
+            
+
+            const user = JSON.parse(sessionStorage.getItem('token')).user;
+
+            userDropdown.btn.html(user);
+
+
+            if (window.innerWidth > 768) {
+                NavBar.links.append(
+                    NavBar.dashboard,
+                    NavBar.bills,
+                    NavBar.payments,
+                )
+            }
+            else {
+                userDropdown.addMenuItem('Dashboard', () => location.hash = '#dashboard');
+                userDropdown.addMenuItem('Bills', () => location.hash = '#bills');
+                userDropdown.addMenuItem('Payments', () => location.hash = '#payments');
+                userDropdown.menu.append('<hr>');
+            }
+
+            
             userDropdown.addMenuItem('My Profile', '');
             userDropdown.addMenuItem('Change Password', '');
+            userDropdown.menu.append('<hr>');
+
 
             userDropdown.addMenuItem('Logout', () => {
                 sessionStorage.clear();
@@ -41,14 +70,8 @@ class NavBar {
                 NavBar.setLinks();
             });
 
-            const user = JSON.parse(sessionStorage.getItem('token')).user;
-
-            userDropdown.btn.html(user);
 
             NavBar.links.append(
-                NavBar.dashboard,
-                NavBar.bills,
-                NavBar.payments,
                 userDropdown.html
             );
 

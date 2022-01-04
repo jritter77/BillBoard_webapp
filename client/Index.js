@@ -18,6 +18,7 @@ import { Register } from "./views/Register.js";
 $('#header').html(NavBar.html);
 $('#footer').html(Footer());
 
+NavBar.init();
 NavBar.setLinks();
 
 const setFooterPos = () => {

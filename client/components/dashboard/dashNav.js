@@ -11,14 +11,18 @@ class DashNav {
             this.html.addClass('text-center');
         }
 
-        window.onresize = () => {
+        const resizeHandler = () => {
             if (window.innerWidth > 768) {
                 this.html.addClass('text-center');
+                this.html.removeClass('text-left');
             }
             else {
                 this.html.removeClass('text-center');
+                this.html.addClass('text-left');
             }
         }
+
+        window.addEventListener('resize', resizeHandler);
         
 
         this.html.append(
