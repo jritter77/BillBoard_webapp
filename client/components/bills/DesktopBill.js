@@ -1,16 +1,8 @@
 import { Bill } from "../../server_requests/Bill.js";
 import { FloatingContainer } from "../general/FloatingContainer.js"
+import { Footer } from "../general/Footer.js";
 import { LinkButton } from "../general/LinkButton.js";
 
-const setFooterPos = () => {
-    console.log(window.innerHeight, $('#app').height());
-    if (window.innerHeight > $('#app').height()) {
-        $('#footer').css({'position':'absolute'});
-    }
-    else {
-        $('#footer').css({'position':'static'});
-    }
-}
 
 class DesktopBill {
 
@@ -44,7 +36,7 @@ class DesktopBill {
         this.deleteBtn.click(async () => {
             await Bill.deleteBill(this.bill.bill_id);
             await this.populateBills();
-            setFooterPos();
+            Footer.setFooterPos();
         });
         
 

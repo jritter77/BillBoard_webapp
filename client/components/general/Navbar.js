@@ -27,37 +27,36 @@ class NavBar {
         window.addEventListener('resize', () => NavBar.setLinks());
     }
 
+
+    static collapseLinks(userDropdown) {
+        if (window.innerWidth > 768) {
+            NavBar.links.append(
+                NavBar.dashboard,
+                NavBar.bills,
+                NavBar.payments,
+            )
+        }
+        else {
+            userDropdown.addMenuItem('Dashboard', () => location.hash = '#dashboard');
+            userDropdown.addMenuItem('Bills', () => location.hash = '#bills');
+            userDropdown.addMenuItem('Payments', () => location.hash = '#payments');
+            userDropdown.menu.append('<hr>');
+        }
+    }
+
+
     static setLinks() {
-
-
 
         NavBar.links.html('');
 
         if (sessionStorage.getItem('token')) {
 
             const userDropdown = new Dropdown();
-
-            
-
             const user = JSON.parse(sessionStorage.getItem('token')).user;
 
             userDropdown.btn.html(user);
 
-
-            if (window.innerWidth > 768) {
-                NavBar.links.append(
-                    NavBar.dashboard,
-                    NavBar.bills,
-                    NavBar.payments,
-                )
-            }
-            else {
-                userDropdown.addMenuItem('Dashboard', () => location.hash = '#dashboard');
-                userDropdown.addMenuItem('Bills', () => location.hash = '#bills');
-                userDropdown.addMenuItem('Payments', () => location.hash = '#payments');
-                userDropdown.menu.append('<hr>');
-            }
-
+            NavBar.collapseLinks(userDropdown);
             
             userDropdown.addMenuItem('My Profile', '');
             userDropdown.addMenuItem('Change Password', '');
@@ -75,10 +74,8 @@ class NavBar {
                 userDropdown.html
             );
 
-
         }
         else {
-
 
             this.links.append(
                 this.register,

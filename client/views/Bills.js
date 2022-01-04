@@ -2,6 +2,7 @@ import { DesktopBill } from "../components/bills/DesktopBill.js";
 import { EditBillModal } from "../components/bills/EditBillModal.js";
 import { NewBillButton } from "../components/bills/NewBillButton.js";
 import { Dropdown } from "../components/general/Dropdown.js";
+import { Footer } from "../components/general/Footer.js";
 import { Login } from "../components/general/Login.js";
 import { NavBar } from "../components/general/Navbar.js";
 import { Select } from "../components/general/Select.js";
@@ -26,19 +27,11 @@ async function populateBills(modal) {
 
     }
 
-    setFooterPos();
+    Footer.setFooterPos();
 
 }
 
 
-const setFooterPos = () => {
-    if (window.innerHeight > $('#app').height()) {
-        $('#footer').css({'position':'absolute'});
-    }
-    else {
-        $('#footer').css({'position':'static'});
-    }
-}
 
 
 async function Bills() {

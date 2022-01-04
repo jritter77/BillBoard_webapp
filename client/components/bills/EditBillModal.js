@@ -107,7 +107,6 @@ class EditBillModal extends Modal {
             month = '0' + month;
         }
 
-        console.log(day);
         this.dateSelect.val(`${bill.bill_year_due}-${month}-${day}`);
 
     }

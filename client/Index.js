@@ -16,21 +16,14 @@ import { Register } from "./views/Register.js";
 
 
 $('#header').html(NavBar.html);
-$('#footer').html(Footer());
+$('#footer').html(Footer.html);
 
 NavBar.init();
 NavBar.setLinks();
 
-const setFooterPos = () => {
-    if (window.innerHeight > $('#app').height()) {
-        $('#footer').css({'position':'absolute'});
-    }
-    else {
-        $('#footer').css({'position':'static'});
-    }
-}
+Footer.setFooterPos();
 
-window.onresize = setFooterPos;
+window.onresize = Footer.setFooterPos;
 
 const pages = {
     home: Home,
@@ -55,8 +48,8 @@ function getPageFromURL() {
 async function loadContent() {
     let fragmentId = getPageFromURL();
     await pages[fragmentId]();
-    window.onresize = setFooterPos;
-    setFooterPos();
+    window.onresize = Footer.setFooterPos;
+    Footer.setFooterPos();
 }
 
 // Set to home page if no hash
