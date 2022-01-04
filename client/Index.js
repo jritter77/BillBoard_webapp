@@ -12,8 +12,13 @@ import { Dashboard } from "./views/Dashboard.js";
 import { Payments } from "./views/Payments.js";
 import { Register } from "./views/Register.js";
 
-$('#header').html(NavBar());
+
+
+
+$('#header').html(NavBar.html);
 $('#footer').html(Footer());
+
+NavBar.setLinks();
 
 const setFooterPos = () => {
     if (window.innerHeight > $('#app').height()) {
@@ -47,7 +52,6 @@ function getPageFromURL() {
 
 // Populate contentDiv wtih retrieved HTML
 async function loadContent() {
-    $('#myModal').modal('hide');
     let fragmentId = getPageFromURL();
     await pages[fragmentId]();
     window.onresize = setFooterPos;

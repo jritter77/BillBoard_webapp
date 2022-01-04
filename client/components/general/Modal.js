@@ -32,6 +32,7 @@ class Modal {
 
         $('#app').prepend(this.modal);
 
+        // Close modal on back button 
         $(window).on('popstate', function() {
             $('.modal').modal('hide');
             $( ".modal-backdrop" ).remove();

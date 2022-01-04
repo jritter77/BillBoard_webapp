@@ -1,5 +1,6 @@
 import { DashNav } from "../components/dashboard/dashNav.js";
 import { Login } from "../components/general/Login.js";
+import { NavBar } from "../components/general/Navbar.js";
 import { verifySession } from "../server_requests/Session.js";
 
 async function Dashboard() {
@@ -10,6 +11,7 @@ async function Dashboard() {
 
 
     await verifySession();
+    NavBar.setLinks();
     
 
     if (sessionStorage.getItem('token')) {

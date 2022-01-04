@@ -1,6 +1,7 @@
 import { startSession } from "../../server_requests/Session";
 import { Dashboard } from "../../views/Dashboard";
 import { FloatingContainer } from "./FloatingContainer";
+import { NavBar } from "./Navbar";
 
 class Login {
     
