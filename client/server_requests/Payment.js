@@ -46,9 +46,9 @@ class Payment {
     }
 
 
-    static async getAllPayments(bill_id) {
+    static async getAllPayments() {
         const endpoint = './server/db/payment/getAllPayments.php';
-        const params = JSON.stringify({bill_id: bill_id});
+        const params = sessionStorage.getItem('token');
 
         const result = await get(endpoint, params);
 

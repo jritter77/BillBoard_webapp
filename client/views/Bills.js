@@ -2,11 +2,9 @@ import { DesktopBill } from "../components/bills/DesktopBill.js";
 import { EditBillModal } from "../components/bills/EditBillModal.js";
 import { NewBillButton } from "../components/bills/NewBillButton.js";
 import { Col, Row } from "../components/general/BasicComponents.js";
-import { Dropdown } from "../components/general/Dropdown.js";
 import { Footer } from "../components/general/Footer.js";
 import { Login } from "../components/general/Login.js";
 import { NavBar } from "../components/general/Navbar.js";
-import { Select } from "../components/general/Select.js";
 import { Bill } from "../server_requests/Bill.js";
 import { verifySession } from "../server_requests/Session.js";
 

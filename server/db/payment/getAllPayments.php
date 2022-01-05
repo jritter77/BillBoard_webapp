@@ -6,10 +6,14 @@ $db = new SQLite3('../../../data/BillBoard.db');
 $req = json_decode($_GET['req']);
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("SELECT * FROM Payment WHERE bill_id = :bill_id");
+$stmt = $db->prepare("SELECT * FROM 
+                      Payment, Bill 
+                      WHERE Payment.bill_id = Bill.bill_id
+                      AND user_id = :user_id
+                      order by bill_year_due, bill_month_due, bill_day_due");
 
 // fill in parameters
-$stmt->bindValue(':bill_id', $req->bill_id);
+$stmt->bindValue(':user_id', $req->user_id);
 
 // Execute the sqlite3 command
 $result = $stmt->execute();

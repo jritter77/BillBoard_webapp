@@ -118,6 +118,7 @@ class EditBillModal extends Modal {
 
             const date = this.dateSelect.val().split('-');
             const token = JSON.parse(sessionStorage.getItem('token'));
+            
             if (this.edit) {
                 await Bill.editBill(this.edit,
                     this.nameField.val(),
@@ -131,7 +132,7 @@ class EditBillModal extends Modal {
             }
             else {
                 await Bill.createNewBill(
-                    token.id,
+                    token.user_id,
                     this.nameField.val(),
                     this.amtField.val(),
                     this.typeSelect.select.val(),

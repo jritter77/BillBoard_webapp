@@ -17,7 +17,7 @@ class Footer {
     `);
 
     static setFooterPos = () => {
-        if (window.innerHeight > $('#app').height()) {
+        if (window.innerHeight-64 > $('#app').height()) {
             $('#footer').css({'position':'absolute'});
         }
         else {

@@ -34,7 +34,7 @@ if (password_verify($req->pass, $data[0]['pass_hash'])) {
     $token = array();
     $_SESSION['user_id'] = $data[0]['user_id'];
     $_SESSION['user'] = $req->user_name;
-    $token['id'] = $data[0]['user_id'];
+    $token['user_id'] = $data[0]['user_id'];
     $token['user'] = $req->user_name;
     $token['session'] = session_id();
     echo json_encode($token);

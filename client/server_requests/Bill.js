@@ -49,9 +49,9 @@ class Bill {
     }
 
 
-    static async getAllBills(user_id) {
+    static async getAllBills() {
         const endpoint = './server/db/bill/getAllBills.php';
-        const params = JSON.stringify({user_id: user_id});
+        const params = sessionStorage.getItem('token');
 
         const result = await get(endpoint, params);
 
@@ -67,9 +67,9 @@ class Bill {
     }
 
 
-    static async getActiveBills(user_id) {
+    static async getActiveBills() {
         const endpoint = './server/db/bill/getActiveBills.php';
-        const params = JSON.stringify({user_id: user_id});
+        const params = sessionStorage.getItem('token');
 
         const result = await get(endpoint, params);
 
