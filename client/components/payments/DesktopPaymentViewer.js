@@ -4,9 +4,12 @@ import { Row, Col } from "../general/BasicComponents.js";
 import { FloatingContainer } from "../general/FloatingContainer.js";
 import { Footer } from "../general/Footer.js";
 import { LinkButton } from "../general/LinkButton.js";
+import { PaidModal } from "./PaidModal.js";
 
 class DesktopPaymentViewer {
     constructor() {
+
+        this.modal = new PaidModal(this);
         this.html = new FloatingContainer();
 
         this.paymentsContainer = $('<div></div>');
@@ -47,24 +50,69 @@ class DesktopPaymentViewer {
 
 
     async displayAllPayments() {
-        const bills = await Bill.getAllBills();
+        this.paymentsContainer.html('');
+
+        const bills = await Bill.getActiveBills();
         const payments = await Payment.getAllPayments();
 
+        const date = new Date();
+
         for (let bill of bills) {
-            const b = new PayObj(`${bill.bill_month_due}/${bill.bill_day_due}/${bill.bill_year_due}`,
+            const b = new PayObj(
+                                this.modal,
+                                `${bill.bill_month_due}/${bill.bill_day_due}/${bill.bill_year_due}`,
                                 bill.bill_name,
                                 bill.bill_amt
             );
+
+            b.datePaid.click(() => {
+                this.modal.toggle();
+                this.modal.load(bill);
+
+            });
+
+            let pastDue = false;
+
+            if (bill.bill_year_due < date.getFullYear()) {
+                pastDue = true;
+            }
+            else if (bill.bill_year_due === date.getFullYear()) {
+                if (bill.bill_month_due < (date.getMonth()+1)) {
+                    pastDue = true;
+                }
+                else if (bill.bill_month_due === date.getMonth()+1) {
+                    if (bill.bill_day_due < date.getDate()) {
+                        pastDue = true;
+                    }
+                }
+            }
+
+            if (pastDue) {
+                b.status.html('Past Due');
+                b.status.css({'color':'red'});
+            }
+
 
             this.paymentsContainer.append(b.html, '<hr>');
         }
         
         for (let pay of payments) {
-            const p = new PayObj(`${pay.bill_month_due}/${pay.bill_day_due}/${pay.bill_year_due}`,
+            const p = new PayObj(
+                                this.modal,
+                                `${pay.bill_month_due}/${pay.bill_day_due}/${pay.bill_year_due}`,
                                 pay.bill_name,
-                                pay.bill_amt, 
+                                pay.pay_amt, 
                                 `${pay.pay_month}/${pay.pay_day}/${pay.pay_year}`
             );
+
+            p.datePaid.click(() => {
+                this.modal.toggle();
+                this.modal.load(pay);
+
+            });
+
+            p.status.html('Paid');
+            p.status.css({'color':'lightgreen'});
             
 
             this.paymentsContainer.append(p.html, '<hr>');
@@ -78,15 +126,17 @@ class DesktopPaymentViewer {
 
 
 class PayObj {
-    constructor(dateDue, billName, amtDue, datePaid=null) {
+    constructor(modal, dateDue, billName, amtDue, datePaid=null) {
 
-        this.status = 'current';
+        this.modal = modal;
+        this.status = $('<p>Current</p>');
 
         if (!datePaid) {
             datePaid = 'Mark as Paid';
         }
 
         this.datePaid = new LinkButton(datePaid);
+
         
         this.html = Row().append(
             Col().append(

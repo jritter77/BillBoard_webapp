@@ -38,7 +38,7 @@ class EditBillModal extends Modal {
 
         this.dateGroup = $('<div class="form-group"></div>');
         this.dateLabel = $('<label for="date"><b>Date Due</b></label>');
-        this.dateSelect = $('<input type="date" id="date" required>');
+        this.dateSelect = $('<input class="form-control" type="date" id="date" required>');
         this.dateFeedback = $('<div class="invalid-feedback"></div>');
 
 

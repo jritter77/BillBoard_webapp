@@ -154,7 +154,87 @@ class Bill {
 
     // adjusts the bills due date to the next date according to frequency
     static async cycleBill(bill_id) {
+        const dCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+        const user_id = JSON.parse(sessionStorage.getItem('token')).user_id;
+
+
+        const prevBill = await this.getBill(bill_id);
+
+        if (prevBill.bill_year_due % 4 === 0) {
+            dCount[2] += 1;
+        }
+
+        const freq = prevBill.bill_freq;
+
+        if (freq === 'one-time') {
+            const result = await this.archiveBill(bill_id, true);
+            return result;
+        }
+
+        else if (freq === 'weekly') {
+
+            let newYearDue = prevBill.bill_year_due;
+            let newMonthDue = prevBill.bill_month_due;
+            let newDayDue = prevBill.bill_day_due;
+
+            if (prevBill.bill_month_due === 12 && prevBill.bill_day_due > 24) {
+                newYearDue = prevBill.bill_year_due + 1;
+            }
+
+            if ((dCount[prevBill.bill_month_due-1] - prevBill.bill_day_due) < 7) {
+                newMonthDue = (prevBill.bill_month_due + 1 > 12) ? 1 : prevBill.bill_month_due + 1;
+            }
+
+            newDayDue = (prevBill.bill_day_due + 7) % dCount[prevBill.bill_month_due-1];
+
+            if (!newDayDue) {
+                newDayDue = dCount[prevBill.bill_month_due-1];
+            }
+
+
+            await this.createNewBill(
+                user_id,
+                prevBill.bill_name,
+                prevBill.bill_amt,
+                prevBill.bill_type,
+                newDayDue,
+                newMonthDue,
+                newYearDue,
+                freq
+            );
+
+            await this.archiveBill(bill_id, true);
+            
+        }
+
+        else if (freq === 'monthly') {
+
+            let newYearDue;
+            let newMonthDue;
+
+            if (prevBill.bill_month_due === 12) {
+                newYearDue = prevBill.bill_year_due + 1;
+                newMonthDue = 1;
+            }
+            else {
+                newYearDue = prevBill.bill_year_due;
+                newMonthDue = prevBill.bill_month_due + 1;
+            }
+
+            await this.createNewBill(
+                user_id,
+                prevBill.bill_name,
+                prevBill.bill_amt,
+                prevBill.bill_type,
+                prevBill.bill_day_due,
+                newMonthDue,
+                newYearDue,
+                freq
+            );
+
+            await this.archiveBill(bill_id, true);
+        }
     }
 
 

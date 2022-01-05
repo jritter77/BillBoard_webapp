@@ -35,7 +35,7 @@ class DesktopBill {
 
         this.deleteBtn = $('<button class="btn btn-danger">Delete</button>');
         this.deleteBtn.click(async () => {
-            await Bill.deleteBill(this.bill.bill_id);
+            await Bill.archiveBill(this.bill.bill_id, true);
             await this.populateBills();
             Footer.setFooterPos();
         });

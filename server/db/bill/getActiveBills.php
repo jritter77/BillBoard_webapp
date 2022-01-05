@@ -6,7 +6,7 @@ $db = new SQLite3('../../../data/BillBoard.db');
 $req = json_decode($_GET['req']);
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("SELECT * FROM Bill WHERE user_id = :user_id AND (archived != true OR archived is NULL)");
+$stmt = $db->prepare("SELECT * FROM Bill WHERE user_id = :user_id AND (archived != true OR archived is NULL) order by bill_year_due, bill_month_due, bill_day_due");
 
 // fill in parameters
 $stmt->bindValue(':user_id', $req->user_id);

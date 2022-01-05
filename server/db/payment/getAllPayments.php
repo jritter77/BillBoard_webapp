@@ -10,7 +10,7 @@ $stmt = $db->prepare("SELECT * FROM
                       Payment, Bill 
                       WHERE Payment.bill_id = Bill.bill_id
                       AND user_id = :user_id
-                      order by bill_year_due, bill_month_due, bill_day_due");
+                      order by pay_id desc");
 
 // fill in parameters
 $stmt->bindValue(':user_id', $req->user_id);
