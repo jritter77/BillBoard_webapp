@@ -7,7 +7,7 @@ class NavBar {
 
     static links = $('<div class="row align-items-center"></div>');
 
-    static register = $(`<div class='col'><b><a style='color:white;' >Register</a></b></div>`);
+    static register = $(`<div class='col'><b><a style='color:white;' href="#register">Register</a></b></div>`);
     static login = $(`<div class='col'><b><a style='color:white;' href="#dashboard">Login</a></b></div>`);
 
     static dashboard = $(`<div class='col'><b><a style='color:white;' href="#dashboard">Dashboard</a></b></div>`);
