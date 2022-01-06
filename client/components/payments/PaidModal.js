@@ -151,7 +151,7 @@ class PaidModal extends Modal {
         const paymentResult = await Payment.createNewPayment(this.bill.bill_id, day, month, year, payAmt);
         const newBillResult = await Bill.cycleBill(this.bill.bill_id);
         this.toggle();
-        this.viewer.displayAllPayments();
+        this.viewer.refreshDisplay();
     }
 }
 

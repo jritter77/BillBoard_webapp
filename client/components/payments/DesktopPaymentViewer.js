@@ -47,7 +47,7 @@ class DesktopPaymentViewer {
             )
         );
 
-        this.displayAllPayments();
+        this.refreshDisplay();
     }
 
 
@@ -122,7 +122,7 @@ class DesktopPaymentViewer {
     }
 
 
-    async displayAllPayments() {
+    async refreshDisplay() {
         this.paymentsContainer.html('');
 
         await this.appendBills();
@@ -137,7 +137,7 @@ class DesktopPaymentViewer {
     }
 
     async showMore() {
-        this.offset += 5;
+        this.offset += this.limit;
         await this.appendPayments();
 
         

@@ -3,7 +3,7 @@
 
 class LinkButton {
     constructor(label) {
-        const btn = $(`<p style="cursor:pointer;color:blue;">${label}</p>`);
+        const btn = $(`<b style="cursor:pointer;color:blue;">${label}</b>`);
         btn.on('mouseover', () => btn.css({'text-decoration': 'underline'}));
         btn.on('mouseout', () => btn.css({'text-decoration': 'none'}));
         return btn;

@@ -67,9 +67,9 @@ class Bill {
     }
 
 
-    static async getActiveBills() {
+    static async getActiveBills(limit=10, offset=0) {
         const endpoint = './server/db/bill/getActiveBills.php';
-        const params = sessionStorage.getItem('token');
+        const params = JSON.stringify({limit: limit, offset: offset, user_id: JSON.parse(sessionStorage.getItem('token')).user_id});
 
         const result = await get(endpoint, params);
 
@@ -152,7 +152,7 @@ class Bill {
     }
 
 
-    // adjusts the bills due date to the next date according to frequency
+    // archives old bill and creates a new bill at the nex date
     static async cycleBill(bill_id) {
         const dCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
