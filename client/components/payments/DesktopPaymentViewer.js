@@ -10,6 +10,7 @@ import { PayObj } from "./PayObj.js";
 class DesktopPaymentViewer {
     constructor() {
 
+        this.limit = 5;
         this.offset = 0;
 
         this.modal = new PaidModal(this);
@@ -50,7 +51,7 @@ class DesktopPaymentViewer {
     }
 
 
-    async getBills() {
+    async appendBills() {
         const bills = await Bill.getActiveBills();
         const date = new Date();
 
@@ -94,8 +95,8 @@ class DesktopPaymentViewer {
         }
     }
 
-    async getPayments(offset) {
-        const payments = await Payment.getAllPayments(offset);
+    async appendPayments() {
+        const payments = await Payment.getPayments(this.limit, this.offset);
         
         for (let pay of payments) {
             const p = new PayObj(
@@ -124,8 +125,8 @@ class DesktopPaymentViewer {
     async displayAllPayments() {
         this.paymentsContainer.html('');
 
-        await this.getBills();
-        await this.getPayments(0);
+        await this.appendBills();
+        await this.appendPayments(0);
         this.showMoreBtn.click(() => this.showMore());
 
         
@@ -137,7 +138,7 @@ class DesktopPaymentViewer {
 
     async showMore() {
         this.offset += 5;
-        await this.getPayments(this.offset);
+        await this.appendPayments();
 
         
         Footer.setFooterPos();

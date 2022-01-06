@@ -46,9 +46,28 @@ class Payment {
     }
 
 
-    static async getAllPayments(offset) {
+    static async getAllPayments() {
         const endpoint = './server/db/payment/getAllPayments.php';
-        const params = JSON.stringify({offset: offset, user_id: JSON.parse(sessionStorage.getItem('token')).user_id});
+        const params = sessionStorage.getItem('token');
+
+        const result = await get(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
+
+
+    static async getPayments(limit, offset) {
+        const endpoint = './server/db/payment/getPayments.php';
+        const params = JSON.stringify({limit: limit, offset: offset, user_id: JSON.parse(sessionStorage.getItem('token')).user_id});
 
         const result = await get(endpoint, params);
 
