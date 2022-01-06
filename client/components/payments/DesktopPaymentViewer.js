@@ -5,16 +5,19 @@ import { FloatingContainer } from "../general/FloatingContainer.js";
 import { Footer } from "../general/Footer.js";
 import { LinkButton } from "../general/LinkButton.js";
 import { PaidModal } from "./PaidModal.js";
+import { PayObj } from "./PayObj.js";
 
 class DesktopPaymentViewer {
     constructor() {
+
+        this.offset = 0;
 
         this.modal = new PaidModal(this);
         this.html = new FloatingContainer();
 
         this.paymentsContainer = $('<div></div>');
 
-        this.showMore = new LinkButton('Show More');
+        this.showMoreBtn = new LinkButton('Show More');
 
         this.html.append(
             Row().append(
@@ -38,7 +41,7 @@ class DesktopPaymentViewer {
             this.paymentsContainer,
             $("<div class='row text-center'></div>").append(
                 Col().append(
-                    this.showMore
+                    this.showMoreBtn
                 )
             )
         );
@@ -47,14 +50,8 @@ class DesktopPaymentViewer {
     }
 
 
-
-
-    async displayAllPayments() {
-        this.paymentsContainer.html('');
-
+    async getBills() {
         const bills = await Bill.getActiveBills();
-        const payments = await Payment.getAllPayments();
-
         const date = new Date();
 
         for (let bill of bills) {
@@ -95,6 +92,10 @@ class DesktopPaymentViewer {
 
             this.paymentsContainer.append(b.html, '<hr>');
         }
+    }
+
+    async getPayments(offset) {
+        const payments = await Payment.getAllPayments(offset);
         
         for (let pay of payments) {
             const p = new PayObj(
@@ -117,45 +118,33 @@ class DesktopPaymentViewer {
 
             this.paymentsContainer.append(p.html, '<hr>');
         }
+    }
+
+
+    async displayAllPayments() {
+        this.paymentsContainer.html('');
+
+        await this.getBills();
+        await this.getPayments(0);
+        this.showMoreBtn.click(() => this.showMore());
+
+        
 
         Footer.setFooterPos();
 
 
     }
-}
 
-
-class PayObj {
-    constructor(modal, dateDue, billName, amtDue, datePaid=null) {
-
-        this.modal = modal;
-        this.status = $('<p>Current</p>');
-
-        if (!datePaid) {
-            datePaid = 'Mark as Paid';
-        }
-
-        this.datePaid = new LinkButton(datePaid);
+    async showMore() {
+        this.offset += 5;
+        await this.getPayments(this.offset);
 
         
-        this.html = Row().append(
-            Col().append(
-                $('<p></p>').append(dateDue)
-            ),
-            Col().append(
-                $('<p></p>').append(this.datePaid)
-            ),
-            Col().append(
-                $('<p></p>').append(billName)
-            ),
-            Col().append(
-                $('<p></p>').append(amtDue)
-            ),
-            Col().append(
-                $('<p></p>').append(this.status)
-            ),
-        )
+        Footer.setFooterPos();
     }
 }
+
+
+
 
 export {DesktopPaymentViewer}

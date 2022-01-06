@@ -46,9 +46,9 @@ class Payment {
     }
 
 
-    static async getAllPayments() {
+    static async getAllPayments(offset) {
         const endpoint = './server/db/payment/getAllPayments.php';
-        const params = sessionStorage.getItem('token');
+        const params = JSON.stringify({offset: offset, user_id: JSON.parse(sessionStorage.getItem('token')).user_id});
 
         const result = await get(endpoint, params);
 

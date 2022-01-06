@@ -10,10 +10,13 @@ $stmt = $db->prepare("SELECT * FROM
                       Payment, Bill 
                       WHERE Payment.bill_id = Bill.bill_id
                       AND user_id = :user_id
-                      order by pay_id desc");
+                      order by pay_id desc
+                      limit 5
+                      offset :offset");
 
 // fill in parameters
 $stmt->bindValue(':user_id', $req->user_id);
+$stmt->bindValue(':offset', $req->offset);
 
 // Execute the sqlite3 command
 $result = $stmt->execute();
