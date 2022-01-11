@@ -1,4 +1,5 @@
 import { Bill } from "../../server_requests/Bill.js";
+import { Payment } from "../../server_requests/Payment.js";
 import { BarGraph } from "../general/BarGraph.js";
 import { Col, Row } from "../general/BasicComponents.js";
 import { FloatingContainer } from "../general/FloatingContainer.js";
@@ -41,21 +42,34 @@ class MonthSummary {
             this.barGraph.html
         );
 
-        this.setGraphValues();
+        this.refreshDisplay();
     }
 
-    async setGraphValues() {
-        const catTotals = await Bill.getMonthCategoryTotals();
-        let total = 0;
+    async refreshDisplay() {
+        const catTotalsDue = await Bill.getMonthCategoryTotals();
+        const catTotalsPaid = await Payment.getMonthCategoryTotals();
 
-        for (let cat in catTotals) {
-            this.barGraph.setValue(cat, catTotals[cat]);
-            total += catTotals[cat];
+        console.log(catTotalsPaid);
+
+        let totalDue = 0;
+
+        for (let cat in catTotalsDue) {
+            this.barGraph.setValue(cat, catTotalsDue[cat]);
+            totalDue += catTotalsDue[cat];
         }
 
-        this.totalDue.html(total);
+        let totalPaid = 0;
+
+        for (let cat of catTotalsPaid) {
+            totalPaid += cat.total;
+        }
+
+        this.totalDue.html(totalDue);
+        this.totalPaid.html(totalPaid);
         this.barGraph.displayAllValues();
     }
+
+
 }
 
 export {MonthSummary}

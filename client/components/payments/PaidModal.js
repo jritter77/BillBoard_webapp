@@ -7,7 +7,7 @@ import { Modal } from "../general/Modal.js";
 import { RadioButton } from "../general/RadioButton.js";
 
 class PaidModal extends Modal {
-    constructor(viewer, optViewer=null) {
+    constructor(viewer, optViewer=[]) {
         super();
 
         this.viewer = viewer;
@@ -155,8 +155,8 @@ class PaidModal extends Modal {
         this.toggle();
         this.viewer.refreshDisplay();
         
-        if (this.optViewer) {
-            this.optViewer.refreshDisplay();
+        for (let viewer of this.optViewer) {
+            viewer.refreshDisplay();
         }
 
     }

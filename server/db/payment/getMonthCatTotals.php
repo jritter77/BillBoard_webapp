@@ -6,7 +6,7 @@ $db = new SQLite3('../../../data/BillBoard.db');
 $req = json_decode($_GET['req']);
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("SELECT bill_type, sum(bill_amt) FROM 
+$stmt = $db->prepare("SELECT bill_type, sum(bill_amt) total FROM 
                       Payment, Bill 
                       WHERE Payment.bill_id = Bill.bill_id
                       AND user_id = :user_id
