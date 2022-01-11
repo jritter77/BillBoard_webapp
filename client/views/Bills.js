@@ -16,7 +16,7 @@ async function populateBills(modal) {
     billsContainer.html('');
 
     const token = JSON.parse(sessionStorage.getItem('token'));
-    const bills = await Bill.getActiveBills(token['id']);
+    const bills = await Bill.getAllBills();
     
     for (let bill of bills) {
 
