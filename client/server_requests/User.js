@@ -1,4 +1,4 @@
-import { get, post } from "./webRequest.js";
+import { get, post } from "./WebRequest.js";
 
 class User {
 
