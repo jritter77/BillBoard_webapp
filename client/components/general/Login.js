@@ -1,7 +1,7 @@
-import { startSession } from "../../server_requests/Session";
-import { Dashboard } from "../../views/Dashboard";
-import { FloatingContainer } from "./FloatingContainer";
-import { NavBar } from "./Navbar";
+import { startSession } from "../../server_requests/Session.js";
+import { Dashboard } from "../../views/Dashboard.js";
+import { FloatingContainer } from "./FloatingContainer.js";
+import { NavBar } from "./Navbar.js";
 
 class Login {
     

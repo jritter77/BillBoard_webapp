@@ -1,4 +1,4 @@
-import { Col } from "./BasicComponents";
+import { Col } from "./BasicComponents.js";
 
 class BarGraph {
     constructor() {
