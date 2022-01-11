@@ -1,5 +1,5 @@
 
-import {Home} from "./views/home.js";
+import {Home} from "./views/Home.js";
 import {NavBar} from './components/general/Navbar.js';
 import { Footer } from "./components/general/Footer.js";
 import { About } from "./views/About.js";

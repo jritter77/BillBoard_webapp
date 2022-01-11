@@ -5,6 +5,8 @@ import { RecentPayments } from "../components/dashboard/RecentPayments.js";
 import { Col, Row } from "../components/general/BasicComponents.js";
 import { Login } from "../components/general/Login.js";
 import { NavBar } from "../components/general/Navbar.js";
+import { Bill } from "../server_requests/Bill.js";
+import { Payment } from "../server_requests/Payment.js";
 import { verifySession } from "../server_requests/Session.js";
 
 async function Dashboard() {
@@ -25,6 +27,10 @@ async function Dashboard() {
         const monthSummary = new MonthSummary();
         const nextDue = new NextDue();
         const recPayments = new RecentPayments();
+
+        nextDue.modal.optViewer = recPayments;
+
+        console.log(await Payment.getMonthCategoryTotals());
 
         APP.append(dashNav.html);
 

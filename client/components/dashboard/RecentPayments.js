@@ -34,7 +34,7 @@ class RecentPayments {
                     $('<b>Bill Name</b>')
                 ),
                 Col().append(
-                    $('<b>Amount Due</b>')
+                    $('<b>Amount Paid</b>')
                 ),
             ),
             Row().append(

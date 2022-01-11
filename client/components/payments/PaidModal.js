@@ -1,15 +1,17 @@
 import { Bill } from "../../server_requests/Bill.js";
 import { Payment } from "../../server_requests/Payment.js";
 import { Payments } from "../../views/Payments.js";
+import { RecentPayments } from "../dashboard/RecentPayments.js";
 import { Col, Row } from "../general/BasicComponents.js";
 import { Modal } from "../general/Modal.js";
 import { RadioButton } from "../general/RadioButton.js";
 
 class PaidModal extends Modal {
-    constructor(viewer) {
+    constructor(viewer, optViewer=null) {
         super();
 
         this.viewer = viewer;
+        this.optViewer = optViewer;
 
         this.html = $('<div></div>');
 
@@ -152,6 +154,11 @@ class PaidModal extends Modal {
         const newBillResult = await Bill.cycleBill(this.bill.bill_id);
         this.toggle();
         this.viewer.refreshDisplay();
+        
+        if (this.optViewer) {
+            this.optViewer.refreshDisplay();
+        }
+
     }
 }
 

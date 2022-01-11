@@ -1,3 +1,4 @@
+import { Bill } from "../../server_requests/Bill.js";
 import { BarGraph } from "../general/BarGraph.js";
 import { Col, Row } from "../general/BasicComponents.js";
 import { FloatingContainer } from "../general/FloatingContainer.js";
@@ -38,7 +39,22 @@ class MonthSummary {
             ),
             '<hr>',
             this.barGraph.html
-        )
+        );
+
+        this.setGraphValues();
+    }
+
+    async setGraphValues() {
+        const catTotals = await Bill.getMonthCategoryTotals();
+        let total = 0;
+
+        for (let cat in catTotals) {
+            this.barGraph.setValue(cat, catTotals[cat]);
+            total += catTotals[cat];
+        }
+
+        this.totalDue.html(total);
+        this.barGraph.displayAllValues();
     }
 }
 

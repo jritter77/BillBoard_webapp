@@ -9,10 +9,6 @@ class BarGraph {
 
         this.html = $('<div></div>');
 
-        this.setValue('cat1', 64);
-        this.setValue('cat2', 124);
-        this.setValue('cat3', 32);
-        this.setValue('cat4', 89);
 
         this.displayAllValues();
         

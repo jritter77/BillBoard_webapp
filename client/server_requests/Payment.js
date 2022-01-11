@@ -82,6 +82,24 @@ class Payment {
         }
     }
 
+    static async getMonthCategoryTotals() {
+        const date = new Date();
+        const endpoint = './server/db/payment/getMonthCatTotals.php';
+        const params = JSON.stringify({pay_month: date.getMonth()+1, pay_year: date.getFullYear(), user_id: JSON.parse(sessionStorage.getItem('token')).user_id});
+
+        const result = await get(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
 
     static async editPayment(pay_id, pay_day, pay_month, pay_year, pay_amt) {
         const endpoint = './server/db/payment/editPayment.php';
@@ -129,6 +147,9 @@ class Payment {
             return result;
         }
     }
+
+
+    
 
 }
 
