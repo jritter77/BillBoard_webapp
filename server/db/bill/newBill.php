@@ -41,7 +41,7 @@ $stmt->bindValue(':bill_year_due', $req->bill_year_due);
 $stmt->bindValue(':bill_freq', $req->bill_freq);
 
 
-
+echo json_encode($req);
 
 
 // Execute the sqlite3 command
