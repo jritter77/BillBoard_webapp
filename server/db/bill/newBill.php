@@ -15,14 +15,14 @@ $stmt = $db->prepare("INSERT INTO Bill (
         bill_freq
     )
     VALUES (
-        :user_id,
-        :bill_name,
-        :bill_amt,
-        :bill_type,
-        :bill_day_due,
-        :bill_month_due,
-        :bill_year_due,
-        :bill_freq
+        5,
+        test,
+        50,
+        none,
+        14,
+        1,
+        2022,
+        monthly
     )");
 
 // get parameters from request
