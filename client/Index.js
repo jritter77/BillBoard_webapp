@@ -23,7 +23,6 @@ NavBar.setLinks();
 
 Footer.setFooterPos();
 
-window.onresize = Footer.setFooterPos;
 
 const pages = {
     home: Home,
