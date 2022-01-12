@@ -63,6 +63,4 @@ loadContent();
 window.addEventListener('hashchange', loadContent);
 
 
-if (window.innerWidth < 768) {
-    $('#body').css({'background-size':'768px 1020px'});
-}
+
