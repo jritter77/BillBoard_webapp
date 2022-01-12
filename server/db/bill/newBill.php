@@ -48,7 +48,7 @@ echo json_encode($req);
 $result = $stmt->execute();
 
 // Return the bill_id of the new bill
-echo json_encode($db->lastInsertRowId());
+//echo json_encode({$db->lastInsertRowId());
 
 
 $db->close();
