@@ -15,14 +15,14 @@ $stmt = $db->prepare("INSERT INTO Bill (
         bill_freq
     )
     VALUES (
-        5,
-        test,
-        50,
-        none,
-        14,
-        1,
-        2022,
-        monthly
+        :user_id,
+        :bill_name,
+        :bill_amt,
+        :bill_type,
+        :bill_day_due,
+        :bill_month_due,
+        :bill_year_due,
+        :bill_freq
     )");
 
 // get parameters from request
@@ -41,14 +41,14 @@ $stmt->bindValue(':bill_year_due', $req->bill_year_due);
 $stmt->bindValue(':bill_freq', $req->bill_freq);
 
 
-echo json_encode($req);
+
 
 
 // Execute the sqlite3 command
 $result = $stmt->execute();
 
 // Return the bill_id of the new bill
-//echo json_encode({$db->lastInsertRowId());
+echo json_encode($db->lastInsertRowId());
 
 
 $db->close();
