@@ -61,3 +61,8 @@ loadContent();
 
 // add event listener for hash
 window.addEventListener('hashchange', loadContent);
+
+
+if (window.innerWidth < 768) {
+    $('')
+}
