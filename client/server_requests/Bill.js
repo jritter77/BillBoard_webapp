@@ -20,6 +20,7 @@ class Bill {
 
         try {
             const data = JSON.parse(result);
+            console.log(data);
             return data;
         }
         catch (err) {
