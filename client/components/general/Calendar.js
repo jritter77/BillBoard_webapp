@@ -1,4 +1,4 @@
-import { Col, Row } from "./BasicComponents";
+import { Col, Row } from "./BasicComponents.js";
 
 class Calendar {
     constructor() {
