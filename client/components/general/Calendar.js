@@ -1,3 +1,4 @@
+import { Bill } from "../../server_requests/Bill.js";
 import { Col, Row } from "./BasicComponents.js";
 
 class Calendar {
@@ -7,8 +8,10 @@ class Calendar {
 
         this.date = new Date();
 
+        this.monthLabel = $(`<h4>${this.months[this.date.getMonth()]} - ${this.date.getFullYear()}</h4>`);
 
         this.html = $('<div class="text-center"></div>');
+
 
         this.populateDates();
     }
@@ -41,10 +44,10 @@ class Calendar {
         this.checkLeapYear();
 
         if (i < 1) {
-            return this.dCount[((month - 1 < 0) ? 11 : month - 1)] + i;
+            return '';
         }
         else if (i > this.dCount[month]) {
-            return i - this.dCount[month];
+            return '';
         }
         else {
             return i;
@@ -66,22 +69,52 @@ class Calendar {
     }
 
 
-    populateDates() {
+    async populateDates() {
 
         this.html.html('');
+        this.html.append(this.monthLabel);
 
         const days = this.getCurrentMonth();
+        const events = await this.getEvents();
 
         let i = 0;
 
         let row = $('<div class="row no-gutters"></div>');
 
         for (let day of days) {
-            row.append(
-                Col().append(
-                    $('<p></p>').append(day)
-                )
-            );
+            const border = (this.date.getDate() === day) ? '2px solid black' : '';
+
+            
+            if (events[day]) {
+                let tooltip = '';
+                let color = 'lightgreen';
+
+
+                for (let e of events[day]) {
+                    tooltip += '$' + e.bill_amt + ' ' + e.bill_name + ' - ' + ((e.pay_amt) ? 'Paid' : 'Due') + '<br>';
+
+                    if (!e.pay_amt) {
+                        color = 'orange'
+                    }
+                    
+                }
+
+                row.append(
+                    Col().append(
+                        $(`<p data-html="true" style="background:${color};border:${border}"  data-toggle="tooltip" data-placement="top" title="${tooltip}"></p>`).append(day).tooltip()
+                    )
+                );
+
+                
+            }
+            else {
+                row.append(
+                    Col().append(
+                        $(`<p style="border:${border}"></p>`).append(day)
+                    )
+                );
+            }
+            
 
             i++;
 
@@ -91,6 +124,33 @@ class Calendar {
             }
         }
 
+    }
+
+    async getEvents() {
+        const monthBills = await Bill.getCurrentMonthBills();
+        const events = {};
+
+        for (let bill of monthBills) {
+            const event = {bill_name: bill.bill_name, bill_amt: bill.bill_amt, pay_amt: null, pay_date: null};
+            const payment = await Bill.verifyPaid(bill.bill_id);
+
+
+            if (payment) {
+                event.pay_amt = payment.pay_amt;
+                event.pay_date = `${payment.pay_month}/${payment.pay_day}/${payment.pay_year}`;
+            }
+
+            if (events[bill.bill_day_due]) {
+                events[bill.bill_day_due].push(event);
+            }
+            else {
+                events[bill.bill_day_due] = [event];
+            }
+        }
+
+        return events;
+
+        
     }
 
 

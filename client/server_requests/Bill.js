@@ -1,3 +1,4 @@
+import { Payment } from "./Payment.js";
 import { get, post } from "./WebRequest.js";
 
 class Bill {
@@ -354,6 +355,29 @@ class Bill {
 
         return monthBills;
 
+    }
+
+
+    static async verifyPaid(bill_id) {
+        const endpoint = './server/db/bill/verifyPaid.php';
+        const params = JSON.stringify({ bill_id: bill_id });
+
+        const result = await get(endpoint, params);
+
+
+        try {
+            const data = JSON.parse(result);
+            if (data.length) {
+                return data[0];
+            }
+            
+            return false;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
     }
 
 

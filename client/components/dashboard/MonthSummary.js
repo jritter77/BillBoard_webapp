@@ -71,6 +71,8 @@ class MonthSummary {
         this.totalDue.html(totalDue);
         this.totalPaid.html(totalPaid);
         this.barGraph.displayAllValues();
+
+        console.log(await this.cal.getEvents());
     }
 
 
