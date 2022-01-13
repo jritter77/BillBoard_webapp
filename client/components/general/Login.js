@@ -29,6 +29,7 @@ class Login {
         this.submitButton.click(e => this.login(e));
 
         this.html.append(
+                $('<h3>Login</h3>'),
                 this.form.append(
                     this.userGroup.append(
                         this.userLabel,

@@ -2,6 +2,7 @@ import { Bill } from "../../server_requests/Bill.js";
 import { Payment } from "../../server_requests/Payment.js";
 import { BarGraph } from "../general/BarGraph.js";
 import { Col, Row } from "../general/BasicComponents.js";
+import { Calendar } from "../general/Calendar.js";
 import { FloatingContainer } from "../general/FloatingContainer.js";
 
 class MonthSummary {
@@ -14,6 +15,8 @@ class MonthSummary {
 
         this.totalDue = $('<p>1,245</p>');
         this.totalPaid = $('<p>865</p>');
+
+        this.cal = new Calendar();
 
         this.html.append(
             $('<div class="row text-center"></div>').append(
@@ -39,7 +42,9 @@ class MonthSummary {
                 ),
             ),
             '<hr>',
-            this.barGraph.html
+            this.barGraph.html,
+            '<hr>',
+            this.cal.html
         );
 
         this.refreshDisplay();
@@ -49,7 +54,6 @@ class MonthSummary {
         const catTotalsDue = await Bill.getMonthCategoryTotals();
         const catTotalsPaid = await Payment.getMonthCategoryTotals();
 
-        console.log(catTotalsPaid);
 
         let totalDue = 0;
 

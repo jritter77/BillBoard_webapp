@@ -30,7 +30,6 @@ async function Dashboard() {
 
         nextDue.modal.optViewer = [recPayments, monthSummary];
 
-        console.log(await Payment.getMonthCategoryTotals());
 
         APP.append(dashNav.html);
 

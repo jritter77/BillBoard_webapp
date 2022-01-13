@@ -62,11 +62,3 @@ loadContent();
 // add event listener for hash
 window.addEventListener('hashchange', loadContent);
 
-function resizeBg() {
-    $('#body').css({'background-size':`100% ${$(window).height() + 60}px`});
-}
-
-resizeBg();
-
-$(window).resize(resizeBg);
-
