@@ -74,7 +74,7 @@ class Calendar {
 
         let i = 0;
 
-        let row = Row();
+        let row = $('<div class="row no-gutters"></div>');
 
         for (let day of days) {
             row.append(
@@ -87,7 +87,7 @@ class Calendar {
 
             if (!(i % 7)) {
                 this.html.append(row);
-                row = Row();
+                row = $('<div class="row no-gutters"></div>');
             }
         }
 
