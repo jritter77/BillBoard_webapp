@@ -42,9 +42,9 @@ class MonthSummary {
                 ),
             ),
             '<hr>',
-            this.barGraph.html,
+            this.cal.html,
             '<hr>',
-            this.cal.html
+            this.barGraph.html,
         );
 
         this.refreshDisplay();

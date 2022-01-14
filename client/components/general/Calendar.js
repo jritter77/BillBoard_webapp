@@ -93,19 +93,36 @@ class Calendar {
                 let tooltip = '';
                 let color = 'lightgreen';
 
+                let paid = false;
+                let due = false;
+
 
                 for (let e of events[day]) {
                     tooltip += '$' + e.bill_amt + ' ' + e.bill_name + ' - ' + ((e.pay_amt) ? 'Paid' : 'Due') + '<br>';
 
                     if (!e.pay_amt) {
-                        color = 'orange'
+                        due = true;
+                    }
+                    else {
+                        paid = true;
                     }
                     
                 }
 
+
+                if (paid && due) {
+                    color = 'linear-gradient(to bottom left, orange 50%, lightgreen 20%)';
+                }
+                else if (paid) {
+                    color = 'lightgreen';
+                }
+                else if (due) {
+                    color = 'orange'
+                }
+
                 row.append(
                     Col().append(
-                        $(`<p data-html="true" style="background:${color};border:${border}"  data-toggle="tooltip" data-placement="top" title="${tooltip}"></p>`).append(day).tooltip()
+                        $(`<p data-html="true" style="margin:4px;background:${color};border:${border}"  data-toggle="tooltip" data-placement="top" title="${tooltip}"></p>`).append(day).tooltip()
                     )
                 );
 
