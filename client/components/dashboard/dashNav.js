@@ -1,7 +1,7 @@
 class DashNav {
 
     constructor() {
-        this.html = $('<div class="row no-gutters align-items-center " style="margin: 64px;"></div>');
+        this.html = $('<div class="row no-gutters align-items-center " style="margin-top: 64px;margin-bottom: 64px;"></div>');
 
         this.manageBills = $('<a class="btn btn-dark" style="margin:4px;" href="#bills"><h5>Manage Bills</h5></a>');
         this.managePayments = $('<a class="btn btn-dark" style="margin:4px;" href="#payments"><h5>Manage Payments</h5></a>');
