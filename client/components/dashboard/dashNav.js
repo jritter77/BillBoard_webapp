@@ -1,11 +1,11 @@
 class DashNav {
 
     constructor() {
-        this.html = $('<div class="row no-gutters align-items-center " style="margin: 5%;"></div>');
+        this.html = $('<div class="row no-gutters align-items-center " style="margin: 16px;"></div>');
 
-        this.manageBills = $('<a class="btn btn-dark" style="margin:8px;" href="#bills"><h5>Manage Bills</h5></a>');
-        this.managePayments = $('<a class="btn btn-dark" style="margin:8px;" href="#payments"><h5>Manage Payments</h5></a>');
-        this.analysis = $('<a class="btn btn-dark" style="margin:8px;" href="#analysis"><h5>Analysis</h5></a>');
+        this.manageBills = $('<a class="btn btn-dark" style="margin:4px;" href="#bills"><h5>Manage Bills</h5></a>');
+        this.managePayments = $('<a class="btn btn-dark" style="margin:4px;" href="#payments"><h5>Manage Payments</h5></a>');
+        this.analysis = $('<a class="btn btn-dark" style="margin:4px;" href="#analysis"><h5>Analysis</h5></a>');
 
 
         if (window.innerWidth > 768) {
