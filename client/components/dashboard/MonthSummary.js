@@ -58,21 +58,30 @@ class MonthSummary {
         let totalDue = 0;
 
         for (let cat in catTotalsDue) {
-            this.barGraph.setValue(cat, catTotalsDue[cat]);
+            console.log(catTotalsPaid);
+
+            if (catTotalsPaid[cat]) {
+                this.barGraph.setValue(cat, catTotalsDue[cat], catTotalsPaid[cat]);
+            }
+            else {
+                this.barGraph.setValue(cat, catTotalsDue[cat]);
+            }
+
             totalDue += catTotalsDue[cat];
         }
 
         let totalPaid = 0;
 
-        for (let cat of catTotalsPaid) {
-            totalPaid += cat.total;
+        for (let cat in catTotalsPaid) {
+            totalPaid += catTotalsPaid[cat];
         }
 
         this.totalDue.html(totalDue);
         this.totalPaid.html(totalPaid);
         this.barGraph.displayAllValues();
 
-        console.log(await this.cal.getEvents());
+        this.cal.populateDates();
+
     }
 
 

@@ -91,7 +91,14 @@ class Payment {
 
         try {
             const data = JSON.parse(result);
-            return data;
+
+            const catTotals = {};
+
+            for (let cat of data) {
+                catTotals[cat.bill_type] = cat.total;
+            }
+
+            return catTotals;
         }
         catch (err) {
             console.log(err);
