@@ -36,11 +36,12 @@ async function Dashboard() {
         APP.append(
             Row().append(
                 $('<div class="col-lg"></div>').append(
-                    monthSummary.html
-                ),
-                $('<div class="col-lg"></div>').append(
                     nextDue.html,
                     recPayments.html
+                ),
+                $('<div class="col-lg"></div>').append(
+                    monthSummary.html
+                    
                 )
             )
         )

@@ -1,5 +1,5 @@
 import { Bill } from "../../server_requests/Bill.js";
-import { Col, Row } from "./BasicComponents.js";
+import { Col, Dot, Row } from "./BasicComponents.js";
 
 class Calendar {
     constructor() {
@@ -11,6 +11,21 @@ class Calendar {
         this.monthLabel = $(`<h4>${this.months[this.date.getMonth()]} - ${this.date.getFullYear()}</h4>`);
 
         this.html = $('<div class="text-center"></div>');
+
+        this.legend = Row().append(
+            Col().append(
+                Dot('lightgreen'),
+                $('<b> Paid</b>')
+            ),
+            Col().append(
+                Dot('orange'),
+                $('<b> Due</b>')
+            ),
+            Col().append(
+                Dot('#e03c31'),
+                $('<b> Past Due</b>')
+            )
+        ).addClass('text-center');
 
 
         this.populateDates();
@@ -95,6 +110,7 @@ class Calendar {
 
                 let paid = false;
                 let due = false;
+                let pastDue = false;
 
 
                 for (let e of events[day]) {
@@ -102,6 +118,10 @@ class Calendar {
 
                     if (!e.pay_amt) {
                         due = true;
+
+                        if (this.date.getDate() > day) {
+                            pastDue = true;
+                        }
                     }
                     else {
                         paid = true;
@@ -109,15 +129,21 @@ class Calendar {
                     
                 }
 
-
-                if (paid && due) {
+                if (paid && due && pastDue) {
+                    color = 'linear-gradient(to bottom left, #e03c31 50%, lightgreen 20%)';
+                }
+                else if (paid && due) {
                     color = 'linear-gradient(to bottom left, orange 50%, lightgreen 20%)';
                 }
                 else if (paid) {
                     color = 'lightgreen';
                 }
                 else if (due) {
-                    color = 'orange'
+                    color = 'orange';
+
+                    if (pastDue) {
+                        color = '#e03c31';
+                    }
                 }
 
                 row.append(
@@ -143,6 +169,8 @@ class Calendar {
                 this.html.append(row);
                 row = $('<div class="row no-gutters"></div>');
             }
+
+            this.html.append(this.legend);
 
         }
 

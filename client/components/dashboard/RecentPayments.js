@@ -28,13 +28,13 @@ class RecentPayments {
             '<hr>',
             Row().append(
                 Col().append(
-                    $('<b>Date Due</b>')
+                    $('<b>Paid</b>')
                 ),
                 Col().append(
-                    $('<b>Bill Name</b>')
+                    $('<b>Bill</b>')
                 ),
                 Col().append(
-                    $('<b>Amount Paid</b>')
+                    $('<b>Amt</b>')
                 ),
             ),
             Row().append(

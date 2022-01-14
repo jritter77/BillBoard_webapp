@@ -29,16 +29,16 @@ class NextDue {
             ),
             '<hr>',
             Row().append(
-                Col().append(
-                    $('<b>Date Due</b>')
+                $('<div class="col-2"></div>').append(
+                    $('<b>Due</b>')
                 ),
-                Col().append(
-                    $('<b>Bill Name</b>')
+                $('<div class="col-4"></div>').append(
+                    $('<b>Bill</b>')
                 ),
-                Col().append(
-                    $('<b>Amount Due</b>')
+                $('<div class="col-2"></div>').append(
+                    $('<b>Amt</b>')
                 ),
-                Col().append(
+                $('<div class="col-4"></div>').append(
                     $('<p></p>')
                 ),
             ),

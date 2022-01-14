@@ -35,13 +35,12 @@ class BarGraph {
             }
         }
 
-        console.log(high);
         for (let label in this.values) {
             const val1 = this.values[label].val1;
             const size1 = 100*val1/high;
             const val2 = this.values[label].val2;
             const size2 = 100*val2/high;
-            this.html.append(new DoubleEntry(label, size1, val1, size2, val2, 'orange', 'lightgreen').html);
+            this.html.append(new DoubleEntry(label, size1, val1, size2, val2, 'orange', 'lightgreen').html, '<hr>');
         }
     }
 
