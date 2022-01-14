@@ -68,6 +68,10 @@ class Calendar {
         return days;
     }
 
+    async refreshDisplay() {
+        await this.populateDates();
+    }
+
 
     async populateDates() {
 
@@ -122,6 +126,7 @@ class Calendar {
                 this.html.append(row);
                 row = $('<div class="row no-gutters"></div>');
             }
+
         }
 
     }

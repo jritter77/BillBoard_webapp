@@ -28,7 +28,7 @@ async function Dashboard() {
         const nextDue = new NextDue();
         const recPayments = new RecentPayments();
 
-        nextDue.modal.optViewer = [recPayments, monthSummary];
+        nextDue.modal.optViewer = [recPayments, monthSummary, monthSummary.cal];
 
 
         APP.append(dashNav.html);

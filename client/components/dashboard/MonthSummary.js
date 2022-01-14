@@ -80,7 +80,6 @@ class MonthSummary {
         this.totalPaid.html(totalPaid);
         this.barGraph.displayAllValues();
 
-        this.cal.populateDates();
 
     }
 

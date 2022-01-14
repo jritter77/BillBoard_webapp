@@ -210,6 +210,8 @@ class Bill {
 
         }
 
+        // TODO: ADD BI-WEEKLY HANDLER!
+
         else if (freq === 'monthly') {
 
             let newYearDue;
