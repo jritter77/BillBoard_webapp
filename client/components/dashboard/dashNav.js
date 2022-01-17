@@ -36,9 +36,7 @@ class DashNav {
             $('<div class="col-md"></div>').append(
                 this.managePayments
             ),
-            $('<div class="col-md"></div>').append(
-                this.analysis
-            ),
+            
         );
     }
 
