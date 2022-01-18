@@ -41,6 +41,7 @@ class NavBar {
             userDropdown.addMenuItem('Bills', () => location.hash = '#bills');
             userDropdown.addMenuItem('Payments', () => location.hash = '#payments');
             userDropdown.menu.append('<hr>');
+            
         }
     }
 
