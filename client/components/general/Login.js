@@ -9,7 +9,7 @@ class Login {
 
         this.path = path;
 
-        this.html = new FloatingContainer();
+        this.html = new FloatingContainer().css({'margin-top':'32px'});
 
         this.form = $('<form class="needs-validation" novalidate ></form>');
 

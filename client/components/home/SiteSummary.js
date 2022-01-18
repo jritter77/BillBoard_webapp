@@ -10,7 +10,7 @@ class SiteSummary {
 
         `;
 
-        this.html = new FloatingContainer();
+        this.html = new FloatingContainer().css({'margin-top':'32px'});
 
         this.html.append('<h3><u>Bill Tracking Made Simple</u></h3>');
 

@@ -22,14 +22,15 @@ async function Home() {
 
     APP.append(
         Row().append(
-            $('<div class="col-md"></div>').append(
-                siteSummary.html,
-                siteHighlights.html
-            ),
-            $('<div class="col-md"></div>').append(
+            $('<div class="col-lg text-center"></div>').append(
                 imageCarousel.html,
+            ),
+            $('<div class="col-lg"></div>').append(
+                siteSummary.html,
+                siteHighlights.html,
                 getStartedButton.html
-            )
+            ),
+            
         )
     );
 }

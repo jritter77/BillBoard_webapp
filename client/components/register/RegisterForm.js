@@ -5,7 +5,7 @@ import { FloatingContainer } from "../general/FloatingContainer.js";
 class RegisterForm {
     constructor() {
 
-        this.html = new FloatingContainer();
+        this.html = new FloatingContainer().css({'margin-top':'32px'});
 
         this.form = $('<form class="needs-validation" novalidate ></form>');
 

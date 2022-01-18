@@ -2,7 +2,7 @@ import { FloatingContainer } from "../general/FloatingContainer.js";
 
 class ImageCarousel {
     constructor() {
-        this.html = new FloatingContainer();
+        this.html = new FloatingContainer().css({'background-color':'black', 'margin-top':'32px'});
 
         this.carousel = $('<div class="carousel slide" data-ride="carousel"></div>');
 

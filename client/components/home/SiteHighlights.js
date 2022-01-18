@@ -2,7 +2,7 @@ import { FloatingContainer } from "../general/FloatingContainer.js";
 
 class SiteHighlights {
     constructor() {
-        this.html = new FloatingContainer();
+        this.html = new FloatingContainer().css({'margin-top':'32px'}).addClass('text-left');
 
         this.html.append('<h3><u>Features:</u></h3>');
 
