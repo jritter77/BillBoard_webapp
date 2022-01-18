@@ -3,7 +3,7 @@ import { Dropdown } from './Dropdown.js'
 
 class NavBar {
 
-    static brand = $(`<a href='#home' class='navbar-brand'><img src="./images/logo.png"></a>`);
+    static brand = $(`<a href='#home' class='navbar-brand'><img style="width:298px" src="./images/logo.png"></a>`);
 
     static links = $('<div class="row align-items-center"></div>');
 
