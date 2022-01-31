@@ -36,6 +36,9 @@ class DesktopPaymentViewer {
                 ),
                 Col().append(
                     $('<b>Status</b>')
+                ),
+                Col().append(
+                    $('<b>Action</b>')
                 )
             ),
             '<hr>',
@@ -63,7 +66,7 @@ class DesktopPaymentViewer {
                                 bill.bill_amt
             );
 
-            b.datePaid.click(() => {
+            b.action.click(() => {
                 this.modal.toggle();
                 this.modal.load(bill);
 
@@ -107,9 +110,13 @@ class DesktopPaymentViewer {
                                 `${pay.pay_month}/${pay.pay_day}/${pay.pay_year}`
             );
 
-            p.datePaid.click(() => {
-                this.modal.toggle();
-                this.modal.load(pay);
+            p.action.click(async () => {
+                const newest = await Bill.getMostRecentBill(pay.bill_name);
+                console.log(newest.result);
+                await Bill.deleteBill(newest.result);
+                await Bill.archiveBill(pay.bill_id, 0);
+                await Payment.deletePayment(pay.pay_id);
+                await this.refreshDisplay();
 
             });
 

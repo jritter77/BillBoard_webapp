@@ -156,6 +156,23 @@ class Payment {
     }
 
 
+    static async deletePayment(pay_id) {
+        const endpoint = './server/db/payment/deletePayment.php';
+        const params = JSON.stringify({ pay_id: pay_id });
+
+        const result = await post(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
     
 
 }

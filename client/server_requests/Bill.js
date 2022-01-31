@@ -51,6 +51,24 @@ class Bill {
     }
 
 
+    static async getMostRecentBill(bill_name) {
+        const endpoint = './server/db/bill/getMostRecentBill.php';
+        const params = JSON.stringify({ bill_name: bill_name, user_id: JSON.parse(sessionStorage.getItem('token')).user_id });
+
+        const result = await get(endpoint, params);
+
+        try {
+            const data = JSON.parse(result);
+            return data;
+        }
+        catch (err) {
+            console.log(err);
+            console.log(result);
+            return result;
+        }
+    }
+
+
     static async getAllBills() {
         const endpoint = './server/db/bill/getAllBills.php';
         const params = sessionStorage.getItem('token');
@@ -240,6 +258,7 @@ class Bill {
             await this.archiveBill(bill_id, true);
         }
     }
+
 
     static async getCurrentMonthBills() {
         const date = new Date();

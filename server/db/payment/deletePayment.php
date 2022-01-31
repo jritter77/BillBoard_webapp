@@ -4,7 +4,7 @@
 $db = new SQLite3('../../../data/BillBoard.db');
 
 // sqlite3 command to be executed
-$stmt = $db->prepare("DELETE FROM Bill WHERE bill_id = :bill_id");
+$stmt = $db->prepare("DELETE FROM Payment WHERE pay_id = :pay_id");
 
 // get parameters from request
 $req = json_decode($_POST['req']);
@@ -12,12 +12,12 @@ $req = json_decode($_POST['req']);
 
 
 // fill in parameters
-$stmt->bindValue(':bill_id', $req->bill_id);
+$stmt->bindValue(':pay_id', $req->pay_id);
 
 
 
 // Execute the sqlite3 command
-$stmt->execute();
+$result = $stmt->execute();
 
 // Return the bill_id of the new bill
 echo json_encode("SUCCESS");

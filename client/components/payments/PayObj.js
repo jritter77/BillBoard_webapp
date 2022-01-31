@@ -8,7 +8,10 @@ class PayObj {
         this.status = $('<p>Current</p>');
 
         if (!datePaid) {
-            datePaid = 'Mark as Paid';
+            this.action = new LinkButton('Mark Paid');
+        }
+        else {
+            this.action = new LinkButton('Remove');
         }
 
         this.datePaid = new LinkButton(datePaid);
@@ -30,6 +33,7 @@ class PayObj {
             Col().append(
                 $('<p></p>').append(this.status)
             ),
+            Col().append(this.action)
         )
     }
 }
