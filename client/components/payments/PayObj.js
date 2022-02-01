@@ -9,12 +9,12 @@ class PayObj {
 
         if (!datePaid) {
             this.action = new LinkButton('Mark Paid');
+            datePaid = "";
         }
         else {
             this.action = new LinkButton('Remove');
         }
 
-        this.datePaid = new LinkButton(datePaid);
 
         
         this.html = Row().append(
@@ -22,7 +22,7 @@ class PayObj {
                 $('<p></p>').append(dateDue)
             ),
             Col().append(
-                $('<p></p>').append(this.datePaid)
+                $('<p></p>').append(datePaid)
             ),
             Col().append(
                 $('<p></p>').append(billName)

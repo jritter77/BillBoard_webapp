@@ -228,6 +228,42 @@ class Bill {
 
         }
 
+        else if (freq === 'bi-weekly') {
+
+            let newYearDue = prevBill.bill_year_due;
+            let newMonthDue = prevBill.bill_month_due;
+            let newDayDue = prevBill.bill_day_due;
+
+            if (prevBill.bill_month_due === 12 && prevBill.bill_day_due > 17) {
+                newYearDue = prevBill.bill_year_due + 1;
+            }
+
+            if ((dCount[prevBill.bill_month_due - 1] - prevBill.bill_day_due) < 14) {
+                newMonthDue = (prevBill.bill_month_due + 1 > 12) ? 1 : prevBill.bill_month_due + 1;
+            }
+
+            newDayDue = (prevBill.bill_day_due + 14) % dCount[prevBill.bill_month_due - 1];
+
+            if (!newDayDue) {
+                newDayDue = dCount[prevBill.bill_month_due - 1];
+            }
+
+
+            await this.createNewBill(
+                user_id,
+                prevBill.bill_name,
+                prevBill.bill_amt,
+                prevBill.bill_type,
+                newDayDue,
+                newMonthDue,
+                newYearDue,
+                freq
+            );
+
+            await this.archiveBill(bill_id, true);
+
+        }
+
         // TODO: ADD BI-WEEKLY HANDLER!
 
         else if (freq === 'monthly') {
